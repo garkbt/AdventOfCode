@@ -1,9 +1,9 @@
 package main
 
 import (
-	"os"
 	"bufio"
 	"fmt"
+	"os"
 	"strconv"
 )
 
@@ -24,43 +24,42 @@ func main() {
 	//open the file with a scanner
 	scanner := bufio.NewScanner(file)
 
-    //error checking new scanner
-    if err := scanner.Err(); err != nil {
+	//error checking new scanner
+	if err := scanner.Err(); err != nil {
 		fmt.Println(scanner.Text())
-    }
+	}
 
-	//for each line in the file 
+	//for each line in the file
 	for scanner.Scan() {
 		//integer taken from new line
 		var current = 0
 		//get the new line integer string and convert it to current integer
-		if cur, err := strconv.Atoi(scanner.Text()); err==nil{
+		if cur, err := strconv.Atoi(scanner.Text()); err == nil {
 			current = cur
-		}		
+		}
 
 		//if there is a previous number
-		if(prev!=0){
+		if prev != 0 {
 			//compare if greater than previous
-			if(current>prev){
+			if current > prev {
 				//print increased line
-				fmt.Println(current," (increased)\n")
+				fmt.Println(current, " (increased)")
 				//increment counter of increases
 				counter++
-			//if prev is greater than current
-			}else if(current<prev){
-				fmt.Println(current," (decreased)\n")
-			//if the same
-			}else{
-				fmt.Println(current," (no change)\n")
+				//if prev is greater than current
+			} else if current < prev {
+				fmt.Println(current, " (decreased)")
+				//if the same
+			} else {
+				fmt.Println(current, " (no change)")
 			}
-		}else{
-			fmt.Println("(N/A - no previous measurement")
-			
+		} else {
+			fmt.Println(current, "(N/A - no previous measurement")
+
 		}
 		//reset the previous to be the old current before new line read
 		prev = current
-	
+
 	}
 	fmt.Println("Total number of increases", counter)
 }
-
